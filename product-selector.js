@@ -1,8 +1,3 @@
-import '../../shared/custom-module.css';
-import './product-selector.less';
-import './magento_logo.png';
-import $ from 'jquery';
-
 var currentValue = null;
 var isDisabled = true;
 var config = null;

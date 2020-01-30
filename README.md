@@ -1,21 +1,24 @@
-# Magento product selector for Kentico Cloud
+# Magento product selector for Kentico Kontent
 
-[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-cloud)
+[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-kontent)
 
-This repository contains source code of Magento product selector custom element for Kentico Cloud
+This repository contains source code for the Magento product selector custom element for Kentico Kontent
 
-# Use
+## Setup
 
-If you want to use Magento product selector in your project in Kentico Cloud, follow these steps:
+1. Register an integration with your Magento instance
+    * [See instructions in our documentaton](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-with-e-commerce-magento)
+1. Deploy the code to a secure public host
+    * See the [deploying section](#deploying) for a really quick option
+1. Follow the instructions in the [Kentico Kontent documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features#a-3--displaying-a-custom-element-in-kentico-kontent) to add the element to a content model.
+    * The `Hosted code URL` is where you deployed to in step 1
+    * Configure the JSON parameters as detailed in the [JSON Parameters section](#json-parameters)
 
-* In Kentico Cloud open Content models tab
-* Open / create a content model to which you want to add Magento selector
-* Add **Custom element** content element
-* Open configuration of the content element
-* Use following URL as Hosted code URL (HTTPS): https://kentico.github.io/custom-element-samples/Magento/product-selector.html
-* Provide the following JSON parameters for the custom element to connect it to your store, replace the macros with the actual values for your setup
+## JSON Parameters
 
-```
+You will also need to provide the following JSON parameters for the custom element to connect to your store. Replace the placeholders with the actual values from your Magento instance and integration:
+
+```json
 {
   "endpointUrl": "<PRODUCTS ENDPOINT URL>",
   "mediaRootUrl": "https://<YOUR MAGENTO DOMAIN>/pub/media/catalog/product",
@@ -23,31 +26,12 @@ If you want to use Magento product selector in your project in Kentico Cloud, fo
 }
 ```
 
-Note that **urlKeyAtttribute** is optional, if not provided, it will be automatically generated with the value shown above.
+Note that **urlKeyAttribute** is optional, if not provided, it will be automatically generated with the value shown above.
 
-# Installation
+## Deploying
 
-If you want to adjust the implementation, first download [Kentico Cloud Custom Elements Devkit](https://github.com/kentico/custom-element-devkit). This repository should be positioned within `/client/custom-elements` folder. For further instructions on devkit implementation, please refer to [Custom Element Devkit README](https://github.com/Kentico/custom-element-devkit/blob/master/readme.md).
+Netlify has made this easy. If you click the deploy button below, it will guide you through the process of deploying it to Netlify and leave you with a copy of the repository in your GitHub account as well.
 
-## Get started
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Kentico/cloud-custom-element-sample-magento)
 
-Prerequisites:
-* Node.js
-* git
-
-```
-git clone https://github.com/Kentico/custom-element-devkit.git
-cd custom-element-devkit
-git clone https://github.com/Kentico/cloud-custom-element-sample-magento.git ./client/custom-elements/cloud-custom-element-sample-magento
-npm install --save jquery@^3.4.0
-npm start -- -hw
-```
-Browse: https://localhost:3000/custom-elements/cloud-custom-element-sample-magento/wrap
-
-# Live site implementation sample
-
-If you want to see live site example of Magento product displayed on the live site, browse to a [deployed sample site](https://kentico-cloud-sample-app-react-magento.surge.sh/en-us/articles/3120ec15-a4a2-47ec-8ccd-c85ac8ac5ba5).
-
-See source code of the sample site implementation [here](https://github.com/Kentico/cloud-sample-app-react/commit/ef2de5ad5798a82d6c909e3154b5cdbb9582db79).
-
-![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/cloud-custom-element-sample-magento?pixel)
+![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/kontent-custom-element-sample-magento?pixel)
