@@ -1,134 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Magento Product Selector</title>
-    <!-- Kontent Styling -->
-    <link rel="stylesheet" href="custom-element.css" />
-    <!-- Kentico Custom elements API-->
-    <script src="https://app.kontent.ai/js-api/custom-element/v1/custom-element.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="product-selector.js"></script>
 
-    <style>
-      body {
-        overflow: hidden;
-        margin: 0;
-        padding: 8px;
-      }
-      .content .title {
-        display: flex;
-        align-items: center;
-      }
-      .title .text {
-        margin-right: 8px;
-        color: #ccc;
-      }
-      .title .text--is-selected {
-        color: #000;
-      }
-      .searchform {
-        display: flex;
-        align-items: center;
-      }
-      .searchterm {
-        min-width: auto;
-        margin-right: 8px;
-      }
-      .tile {
-        display: inline-block;
-        width: 200px;
-        overflow: hidden;
-        margin: 10px;
-        border: solid 1px transparent;
-        position: relative;
-        text-align: center;
-      }
-      .tile:hover {
-        border: solid 1px #ccc;
-      }
-      .tile .title {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding: 5px;
-        white-space: nowrap;
-        text-align: left;
-      }
-      .tile .id {
-        text-align: left;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #ccc;
-        padding: 5px;
-        padding-top: 0;
-      }
-      .tile .noimage {
-        display: inline-block;
-        width: 150px;
-        height: 150px;
-        color: #ccc;
-        background-color: #f8f8f8;
-        line-height: 150px;
-        margin: 5px;
-      }
-      img.preview {
-        cursor: pointer;
-        max-width: 150px;
-        max-height: 150px;
-        margin: 5px;
-      }
-      img.preview:active {
-        outline: none;
-      }
-      .selected .tile {
-        width: 400px;
-        margin: 0;
-      }
-      .selected .tile:hover {
-        border: solid 1px transparent;
-      }
-      .results {
-        margin-top: 16px;
-      }
-      .logo {
-        height: 44px;
-        margin-right: 8px;
-        margin-left: 24px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Custom element HTML-->
-    <div class="content">
-      <h4 class="title">
-        <span class="text">Loading ...</span
-        ><span class="clear"
-          ><button
-            class="btn btn--secondary btn--xs clearbtn"
-            style="display: none;"
-          >
-            Clear
-          </button></span
-        >
-      </h4>
-      <div class="selected"></div>
-    </div>
-    <div class="search" style="display: none;">
-      <form class="searchform">
-        <input class="searchterm text-field__input" /><button
-          class="btn btn--primary searchbtn"
-        >
-          Search</button
-        ><button class="btn btn--secondary clearsearchbtn">Clear search</button
-        ><img
-          class="logo"
-          src="magento_logo.png"
-          alt="Magento"
-          title="Magento"
-        />
-      </form>
-      <div class="results" style="display: none;"></div>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Magento Product Selector</title>
+  <!-- Kontent Styling -->
+  <link rel="stylesheet" href="https://kentico.github.io/kontent-custom-element-samples/shared/custom-element.css" />
+  <link rel="stylesheet" href="src/magento-selector.css" />
+  <!-- Kentico Custom elements API-->
+  <script src="https://app.kontent.ai/js-api/custom-element/v1/custom-element.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="src/magento-selector.js"></script>
+</head>
+
+<body>
+  <!-- Custom element HTML-->
+  <div class="content">
+    <h4 class="title">
+      <span class="text">Loading ...</span><span class="clear"><button class="btn btn--secondary btn--xs clearbtn"
+          style="display: none;">
+          Clear
+        </button></span>
+    </h4>
+    <div class="selected"></div>
+  </div>
+  <div class="search" style="display: none;">
+    <form class="searchform">
+      <input class="searchterm text-field__input" /><button class="btn btn--primary searchbtn">
+        Search</button><button class="btn btn--secondary clearsearchbtn">Clear search</button>
+      <img class="logo" src="src/magento_logo.png" alt="Magento" title="Magento" />
+    </form>
+    <div class="results" style="display: none;"></div>
+  </div>
+</body>
+
 </html>
