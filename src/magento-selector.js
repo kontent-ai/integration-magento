@@ -46,47 +46,27 @@ function updateValue(value) {
 }
 
 function getData(searchTerm, callback) {
-    const url = config.endpointUrl;
-    const mediaRootUrl = config.mediaRootUrl;
-    const urlKeyAttribute = config.urlKeyAttribute || 'url_key';
+    let data = { query: searchTerm };
 
-    $.ajax(
-        {
-            method: 'GET',
-            url,
-            contentType: 'application/json',
-            data: {
-              'searchCriteria[pageSize]' : 10,
-              'searchCriteria[filterGroups][0][filters][0][field]': 'name',
-              'searchCriteria[filterGroups][0][filters][0][conditionType]': 'like',
-              'searchCriteria[filterGroups][0][filters][0][value]': `%${searchTerm}%`,
-            },
-            success: function (response) {
-                var items = response.items.map(
-                    function (item) {
-                        var media = item.media_gallery_entries;
-                        var urlKey = item.custom_attributes && item.custom_attributes.filter(
-                          (attr) => attr.attribute_code == urlKeyAttribute
-                        )[0];
-
-                        return {
-                            id: item.id,
-                            title: item.name,
-                            previewUrl: media && media.filter(
-                              (item) => item.media_type == 'image'
-                            ).map(
-                              (image) => `${mediaRootUrl}${image.file}`
-                            )[0],
-                            sku: item.sku,
-                            urlKey: urlKey && urlKey.value
-                        };
-                    }
-                );
-                callback(items);
-            }
+    $.ajax({
+        method: "POST",
+        url: "/.netlify/functions/magento-client",
+        dataType: "json",
+        contentType: 'application/json',
+        headers: {
+            "x-root-url": config.storeUrl,
+            "x-url-key": config.urlKeyAttribute || 'url_key'
         },
-    );
+        data: JSON.stringify(data),
+        success: function (response) {
+            callback(response);
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
 }
+
 
 function productTile($parent, item, select) {
     var $tile = $(`<div class="tile" title="${item.title}"></div>`)
@@ -195,12 +175,9 @@ function updateSize() {
 }
 
 function validateConfig() {
-  if (!config.endpointUrl) {
-    console.error('Missing Magento Endpoint URL. Please provide the URL of the endpoint for querying products within the custom element JSON config.')
-  }
-  if (!config.mediaRootUrl) {
-    console.error('Missing Magento Media Root URL. Please provide the URL of the media folder within the custom element JSON config.')
-  }
+    if (!config.storeUrl) {
+        console.error('Missing Magento Endpoint URL. Please provide the URL of the endpoint for querying products within the custom element JSON config.')
+    }
 }
 
 function initCustomElement() {
