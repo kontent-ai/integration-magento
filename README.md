@@ -11,7 +11,7 @@
 [![GitHub Discussions][discussion-shield]](https://github.com/Kentico/Home/discussions)
 
 <p align="center">
-<image src="docs/01-kk-logo-main.svg" alt="kontent logo" width="250" />
+<image src="docs/kk-logo.svg" alt="kontent logo" width="200" />
 <image src="docs/magento-logo.png" 
 alt="magento logo" width="320">
 </p>
@@ -27,12 +27,12 @@ alt="magento logo" width="320">
   <a href="#additional-resources">Resources</a>
 </p>
 
-This repository contains the source code of Magento product selector custom element for Kentico Kontent. 
+This repository contains the source code of Magento product selector custom element for Kontent by Kentico. 
 
 It also includes a node.js proxy function (see [Netlify functions](https://docs.netlify.com/functions/overview/)) that routes requests from the element to your Magento instance while adding required authentication. 
 
 ## Features
-This  [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) allows the user to search and link products from their [Magento e-commerce](https://magento.com/) instance into [Kentico Kontent Headless CMS](https://kontent.ai).
+This  [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) allows the user to search and link products from their [Magento e-commerce](https://magento.com/) instance into [Kontent Headless CMS by Kentico](https://kontent.ai).
 
 - Editors can
   - Search for products in Magento commerce
@@ -123,7 +123,7 @@ We have collected notes on how to contribute to this project in [CONTRIBUTING.md
 ## Additional Resources
 
 - [Custom Element Gallery on github](https://kentico.github.io/kontent-custom-element-samples/gallery/)
-- [Kentico Kontent's Integration documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrations-overview)
+- [Kontent's Integration documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrations-overview)
 - [Custom Element documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/content-editing-extensions)
 - [Custom Element API reference](https://docs.kontent.ai/reference/custom-elements-js-api)
 
