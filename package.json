@@ -1,21 +1,20 @@
 {
-  "name": "kontent-custom-element-magento",
+  "name": "custom-element-magento",
   "version": "1.0.0",
-  "description": "Custom element for Kentico Kontent for linking Magento products into your content",
+  "description": "Custom element for Kontent.ai for linking Magento products into your content",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kentico/kontent-custom-element-sample-magento.git"
+    "url": "git+https://github.com/kontent-ai/custom-element-magento.git"
   },
-  "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Kentico/kontent-custom-element-sample-magento/issues"
+    "url": "https://github.com/kontent-ai/custom-element-magento/issues"
   },
-  "homepage": "https://github.com/Kentico/kontent-custom-element-sample-magento#readme",
+  "homepage": "https://github.com/kontent-ai/custom-element-magento#readme",
   "dependencies": {
     "axios": "^0.21.1"
   }
