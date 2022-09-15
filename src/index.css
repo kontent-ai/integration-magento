@@ -1,0 +1,95 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 8px;
+}
+
+.content .title {
+  display: flex;
+  align-items: center;
+}
+
+.title .text {
+  margin-right: 8px;
+  color: #ccc;
+}
+
+.title .text--is-selected {
+  color: #000;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-term {
+  min-width: auto;
+  margin-right: 8px;
+}
+
+.tile {
+  display: inline-block;
+  width: 200px;
+  overflow: hidden;
+  margin: 10px;
+  border: solid 1px transparent;
+  position: relative;
+  text-align: center;
+  background-color: transparent;
+}
+
+.tile:hover, .tile:focus {
+  border: solid 1px #ccc;
+}
+
+.tile .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.tile .id {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #ccc;
+  padding: 5px;
+  padding-top: 0;
+}
+
+.no-image {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  color: #ccc;
+  background-color: #f8f8f8;
+  line-height: 150px;
+  margin: 5px;
+}
+
+.preview {
+  cursor: pointer;
+  max-width: 150px;
+  max-height: 150px;
+  margin: 5px;
+}
+
+.tile--is-selected > .preview {
+  cursor: default;
+}
+
+.preview:active {
+  outline: none;
+}
+
+.tile--is-selected:hover {
+  border: solid 1px transparent;
+}
+
+.results {
+  margin-top: 16px;
+}

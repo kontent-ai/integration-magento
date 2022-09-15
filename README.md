@@ -41,12 +41,20 @@ This  [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/
 
 ![Demo Animation][product-demo]
 
-## Quick Deploy
+## Getting started
+
+### Quick Deploy
 
 Netlify has made this easy. If you click the deploy button below, it will guide you through the process of deploying it to Netlify and leave you with a copy of the repository in your account as well.
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/kontent-ai/custom-element-magento)
 
+### Running manually
+
+You will need to [deploy](https://docs.netlify.com/functions/deploy/?fn-language=ts) the [Netlify function](https://docs.netlify.com/functions/overview/) in the `src/functions` directory.
+Or [run it locally](https://docs.netlify.com/functions/build/#test-locally).
+
+The integration's custom element is created with [Create React App](https://create-react-app.dev/). First you will need to install npm dependencies with `npm install`. Then use `npm run build` to build the integration or `npm run start` to start a local development server. See https://create-react-app.dev/docs/available-scripts for more scripts.
 
 ## Setup
 1. ### Create a new Integration inside of your Magento Instance
