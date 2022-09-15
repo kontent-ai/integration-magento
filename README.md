@@ -35,7 +35,7 @@ This  [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/
 
 - Editors can
   - Search for products in Magento commerce
-  - Select a single product (or one of it's variants)
+  - Select a single or multiple products (or one of it's variants)
 
 ## Demo
 
@@ -92,29 +92,32 @@ At this point, the Magento Product API can be queried for products provided that
 3. ### Configure the Custom Element 
     After your function is setup, you'll need to create and configure your Magento custom element. The process of adding a custom element into your project is described in [Kontent.ai's official documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/content-editing-extensions). 
 
-    The custom element has to be also configured. The necessary configuration values are as follows:
+    The custom element has to be also configured. The supported configuration values are as follows:
 
 ```
 {
     "storeUrl": "<YOUR MAGENTO DOMAIN>",
-    "urlKeyAttribute": "url_key"
+    "urlKeyAttribute": "url_key",
+    "isMultiSelect": false,
 }
 ```
-Note that **urlKeyAttribute** is optional, if not provided, it will be automatically generated with the value shown above.
+Note that **urlKeyAttribute** and **isMultiSelect** are optional, if not provided, they will be automatically generated with the value shown above.
 
 _The url of the Netlify function should be equal to your custom element's Hosted URL with `/.netlify/functions/magento-client` added to it (if you are using the provided quick deploy). If not, you'll have to update the code of the custom element._
 
 ## What is Saved
-The element will contain a json object describing your selected Magento product. See example below:
+The element will contain a json array with objects describing your selected Magento products. See example below:
 
 ```
-{
-  "id": 37,
-  "title": "Endurance Watch",
-  "previewUrl": "https://my-store/pub/media/catalog/product/37.jpg",
-  "sku": "37-MG01",
-  "urlKey": "endurance-watch"
-}
+[
+  {
+    "id": 37,
+    "title": "Endurance Watch",
+    "previewUrl": "https://my-store/pub/media/catalog/product/37.jpg",
+    "sku": "37-MG01",
+    "urlKey": "endurance-watch"
+  }
+]
 ```
 
 ## Contributors

@@ -2,13 +2,13 @@ import { FC, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { Product } from "./types/product";
 import { SearchInput } from "./SearchInput";
 import { ProductTile } from "./ProductTile";
-import { SelectedProduct } from "./SelectedProduct";
+import { SelectedProducts } from "./SelectedProducts";
 import { PoweredByLogo } from "./PoweredByLogo";
 
 const defaultUrlKeyAttribute = 'url_key';
 
 export const MagentoProductSelector: FC = () => {
-  const [currentValue, setCurrentValue] = useState<null | Product | 'loading'>('loading');
+  const [currentValue, setCurrentValue] = useState<null | ReadonlyArray<Product>>(null);
   const [searchResults, setSearchResults] = useState<ReadonlyArray<Product>>([]);
   const [isDisabled, setIsDisabled] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -20,9 +20,9 @@ export const MagentoProductSelector: FC = () => {
     CustomElement.setHeight(Math.ceil(newSize));
   }, []);
 
-  const updateValue = useCallback((newValue: Product | null) => {
-    // send null instead of string 'null' so that the element fails validation when it should not be empty
-    CustomElement.setValue(newValue ? JSON.stringify(newValue) : null);
+  const updateValue = useCallback((newValue: ReadonlyArray<Product>) => {
+    // send null instead of [] so that the element fails validation when it should not be empty
+    CustomElement.setValue(newValue.length ? JSON.stringify(newValue) : null);
     setCurrentValue(newValue);
   }, []);
 
@@ -37,10 +37,11 @@ export const MagentoProductSelector: FC = () => {
       }
       setConfig({
         storeUrl: el.config.storeUrl,
-        urlKeyAttribute: typeof el.config.urlKeyAttribute === 'string' ? el.config.urlKeyAttribute
-          : defaultUrlKeyAttribute
+        urlKeyAttribute: typeof el.config.urlKeyAttribute === 'string' ? el.config.urlKeyAttribute : defaultUrlKeyAttribute,
+        isMultiSelect: !!el.config.isMultiSelect,
       });
-      setCurrentValue(JSON.parse(el.value || 'null'));
+      const value = JSON.parse(el.value || '[]');
+      setCurrentValue(Array.isArray(value) ? value : [value]); // treat old values (not saved as an array) as a single product
       setIsDisabled(el.disabled);
       updateSize();
     });
@@ -61,7 +62,7 @@ export const MagentoProductSelector: FC = () => {
     return () => window.removeEventListener('resize', listener);
   }, [updateSize, windowWidth]);
 
-  if (currentValue === 'loading' || config === null) {
+  if (currentValue === null || config === null) {
     return null;
   }
 
@@ -81,11 +82,11 @@ export const MagentoProductSelector: FC = () => {
 
   return (
     <>
-      <SelectedProduct
-        product={currentValue}
-        onRemove={() => updateValue(null)}
+      <SelectedProducts
+        products={currentValue}
+        onRemove={config.isMultiSelect ? p => updateValue(currentValue?.filter(v => v !== p)) : undefined}
         isDisabled={isDisabled}
-        onImageLoad={updateSize}
+        onClear={() => updateValue([])}
       />
       <div className="search">
         <SearchInput isDisabled={isDisabled} onSubmit={search} onClear={() => setSearchResults([])} />
@@ -93,7 +94,12 @@ export const MagentoProductSelector: FC = () => {
           <div className="results">
             <h4>Search results ({searchResults.length})</h4>
             {searchResults.map(r =>
-              <ProductTile key={r.id} product={r} onClick={() => updateValue(r)} onImageLoad={updateSize} />
+              <ProductTile
+                key={r.id}
+                product={r}
+                onClick={() => updateValue(config?.isMultiSelect ? [...currentValue, r] : [r])}
+                isDisabled={isDisabled}
+              />
             )}
           </div>
         )}
@@ -108,4 +114,5 @@ MagentoProductSelector.displayName = 'MagentoProductSelector';
 type Config = Readonly<{
   storeUrl: string;
   urlKeyAttribute: string;
+  isMultiSelect: boolean;
 }>;
