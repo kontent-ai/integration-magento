@@ -33,7 +33,7 @@ This repository contains the source code of Magento product selector custom elem
 It also includes a node.js proxy function (see [Netlify functions](https://docs.netlify.com/functions/overview/)) that routes requests from the element to your Magento instance while adding required authentication. 
 
 ## Features
-This  [custom element](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) allows the user to search and link products from their [Magento e-commerce](https://magento.com/) instance into [Kontent.ai](https://kontent.ai).
+This  [custom element](https://kontent.ai/learn/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) allows the user to search and link products from their [Magento e-commerce](https://magento.com/) instance into [Kontent.ai](https://kontent.ai).
 
 - Editors can
   - Search for products in Magento commerce
@@ -92,7 +92,7 @@ At this point, the Magento Product API can be queried for products provided that
 ![Netlify variable setup](docs/function_setup.gif?raw=true)
 
 3. ### Configure the Custom Element 
-    After your function is setup, you'll need to create and configure your Magento custom element. The process of adding a custom element into your project is described in [Kontent.ai's official documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/content-editing-extensions). 
+    After your function is setup, you'll need to create and configure your Magento custom element. The process of adding a custom element into your project is described in [Kontent.ai's official documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/content-editing-extensions). 
 
     The custom element has to be also configured. The supported configuration values are as follows:
 
@@ -135,9 +135,9 @@ We have collected notes on how to contribute to this project in [CONTRIBUTING.md
 
 ## Additional Resources
 
-- [Kontent.ai's Integration documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrations-overview)
-- [Custom Element documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/content-editing-extensions)
-- [Custom Element API reference](https://docs.kontent.ai/reference/custom-elements-js-api)
+- [Kontent.ai's Integration documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/integrations-overview)
+- [Custom Element documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/content-editing-extensions)
+- [Custom Element API reference](https://kontent.ai/learn/reference/custom-elements-js-api)
 
 
 [last-commit]: https://img.shields.io/github/last-commit/kontent-ai/custom-element-magento?style=for-the-badge
