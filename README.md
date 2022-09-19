@@ -10,9 +10,11 @@
 [![Discord][discord-shield]](https://discord.gg/SKCxwPtevJ)
 
 <p align="center">
-<image src="docs/kai-logo-hor-pos-rgb.svg" alt="kontent logo" width="290" />
-<image src="docs/magento-logo.png" 
-alt="magento logo" width="300">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/kai-logo-hor-neg-rgb.svg">
+  <img alt="Kontent.ai logo for dark/light scheme." src="docs/kai-logo-hor-pos-rgb.svg" width="290">
+</picture>
+<image src="docs/magento-logo.png" alt="magento logo" width="300">
 </p>
 
 <p align="center">
