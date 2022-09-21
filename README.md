@@ -37,7 +37,7 @@ This  [custom element](https://kontent.ai/learn/tutorials/develop-apps/integrate
 
 - Editors can
   - Search for products in Magento commerce
-  - Select a single or multiple products (or one of it's variants)
+  - Select a single or multiple products (or one of its variants)
 
 ## Demo
 
