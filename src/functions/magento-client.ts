@@ -1,9 +1,14 @@
-const axios = require('axios')
+import axios from 'axios';
+import { Handler } from "@netlify/functions";
 
-exports.handler = async (event, context) => {
+export const handler: Handler = async (event) => {
 
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
+  }
+
+  if (!event.body) {
+    return { statusCode: 400, body: "Missing body" };
   }
 
   const API_TOKEN = process.env.MAGENTO_TOKEN;
@@ -22,24 +27,23 @@ exports.handler = async (event, context) => {
       'Authorization': `Bearer ${API_TOKEN}`
     };
 
-    var data = {
+    const data = {
       'searchCriteria[pageSize]': 10,
       'searchCriteria[filterGroups][0][filters][0][field]': 'name',
       'searchCriteria[filterGroups][0][filters][0][conditionType]': 'like',
       'searchCriteria[filterGroups][0][filters][0][value]': `%${SEARCH_QUERY}%`,
     }
 
-    var response = (await axios.get(`${ROOT_URL}/rest/V1/products`, { headers: headers, params: data })).data;
-    var items = response.items.map(
-      function (item) {
-        var media = item.media_gallery_entries;
-        var urlKey = item.custom_attributes && item.custom_attributes.filter((attr) => attr.attribute_code == URL_KEY)[0];
+    const response = (await axios.get(`${ROOT_URL}/rest/V1/products`, { headers: headers, params: data })).data;
+    const items = response.items.map((item: any) => {
+        const media = item.media_gallery_entries;
+        const urlKey = item.custom_attributes?.filter((attr: any) => attr.attribute_code == URL_KEY)[0];
         return {
           id: item.id,
           title: item.name,
-          previewUrl: media && media.filter((item) => item.media_type == 'image').map((image) => `${ROOT_URL}/pub/media/catalog/product${image.file}`)[0],
+          previewUrl: media?.filter((item: any) => item.media_type == 'image').map((image: any) => `${ROOT_URL}/media/catalog/product${image.file}`)[0],
           sku: item.sku,
-          urlKey: urlKey && urlKey.value
+          urlKey: urlKey?.value
         };
       });
 
@@ -47,6 +51,6 @@ exports.handler = async (event, context) => {
   }
   catch (e) {
     console.log(e);
-    return { statusCode: 500, body: JSON.stringify(e.data) }
+    return { statusCode: 500, body: JSON.stringify(e) }
   }
 };
