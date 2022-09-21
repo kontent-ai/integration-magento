@@ -41,7 +41,7 @@ export const handler: Handler = async (event) => {
         return {
           id: item.id,
           title: item.name,
-          previewUrl: media?.filter((item: any) => item.media_type == 'image').map((image: any) => `${ROOT_URL}/pub/media/catalog/product${image.file}`)[0],
+          previewUrl: media?.filter((item: any) => item.media_type == 'image').map((image: any) => `${ROOT_URL}/media/catalog/product${image.file}`)[0],
           sku: item.sku,
           urlKey: urlKey?.value
         };
