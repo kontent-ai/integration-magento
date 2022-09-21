@@ -65,7 +65,7 @@ _If you don't have a Magento account, you can leverage the public Magento demo a
 
 - Navigate to the Magento admin and select System from the main menu. Our custom product selector will run outside of Magento so you need to register it as an integration.
 - Select **Integrations** from the sub-menu and create a new integration.
-- Fill out the **Integratino info** as you see fit
+- Fill out the **Integration info** as you see fit
 
 ![Magento setup 01](docs/magento-admin01.jpg)
 
@@ -83,7 +83,7 @@ _If you don't have a Magento account, you can leverage the public Magento demo a
 At this point, the Magento Product API can be queried for products provided that the call includes the access token you just created.
 
 2. ### Netlify/server setup
-    Since you don't want to store the API secret inside the custom element config, we are using [Netlify function](https://docs.netlify.com/functions/overview/) to act as a proxy between your custom element and the Magento Product API. In order to make the function work, you'll need to provide it with the **Secret** you obtained in the previous step. For that, we'll use Netlify's [Build enrionment variable](https://docs.netlify.com/configure-builds/environment-variables/). The only issue with these variables are that they are being loaded on build, so whenever you **change the variables**, you'll need to **manually trigger a rebuild**. 
+    Since you don't want to store the API secret inside the custom element config, we are using [Netlify function](https://docs.netlify.com/functions/overview/) to act as a proxy between your custom element and the Magento Product API. In order to make the function work, you'll need to provide it with the **Secret** you obtained in the previous step. For that, we'll use Netlify's [Build environment variable](https://docs.netlify.com/configure-builds/environment-variables/). The only issue with these variables are that they are being loaded on build, so whenever you **change the variables**, you'll need to **manually trigger a rebuild**. 
 
     The expected variable name for the function is `MAGENTO_TOKEN`.
 
