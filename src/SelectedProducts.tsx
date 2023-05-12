@@ -1,6 +1,7 @@
-import { Product } from "./types/product";
 import { FC } from "react";
+
 import { ProductTile } from "./ProductTile";
+import { Product } from "./types/product";
 
 type Props = Readonly<{
   products: ReadonlyArray<Product>;
@@ -11,6 +12,7 @@ type Props = Readonly<{
 
 export const SelectedProducts: FC<Props> = props => {
   const isEmpty = !props.products.length;
+  const onRemove = (p: Product) => props.onRemove && (() => props.onRemove?.(p));
 
   return (
     <div className="content">
@@ -35,7 +37,7 @@ export const SelectedProducts: FC<Props> = props => {
           key={p.id}
           product={p}
           isDisabled={props.isDisabled}
-          onRemove={props.onRemove && (() => props.onRemove?.(p))}
+          onRemove={onRemove(p)}
         />
       ))}
     </div>
