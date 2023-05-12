@@ -1,5 +1,6 @@
-import magentoLogo from './magento_logo.png'
 import { FC } from "react";
+
+import magentoLogo from './magento_logo.png'
 
 export const PoweredByLogo: FC = () => (
   <div style={{ float: 'right', padding: 10 }}>

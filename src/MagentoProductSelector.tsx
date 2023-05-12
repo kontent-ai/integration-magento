@@ -1,9 +1,16 @@
-import { FC, useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { Product } from "./types/product";
-import { SearchInput } from "./SearchInput";
-import { ProductTile } from "./ProductTile";
-import { SelectedProducts } from "./SelectedProducts";
+import {
+  FC,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState
+} from "react"
+
 import { PoweredByLogo } from "./PoweredByLogo";
+import { ProductTile } from "./ProductTile";
+import { SearchInput } from "./SearchInput";
+import { SelectedProducts } from "./SelectedProducts";
+import { Product } from "./types/product";
 
 const defaultUrlKeyAttribute = 'url_key';
 
@@ -80,26 +87,33 @@ export const MagentoProductSelector: FC = () => {
       .then(r => r.json())
       .then(setSearchResults);
 
+  const onRemove = config.isMultiSelect ? (p: Product) => updateValue(currentValue.filter(v => v !== p)) : undefined;
+
   return (
     <>
       <SelectedProducts
         products={currentValue}
-        onRemove={config.isMultiSelect ? p => updateValue(currentValue?.filter(v => v !== p)) : undefined}
+        onRemove={onRemove}
         isDisabled={isDisabled}
         onClear={() => updateValue([])}
       />
       <div className="search">
-        <SearchInput isDisabled={isDisabled} onSubmit={search} onClear={() => setSearchResults([])} />
+        <SearchInput
+          isDisabled={isDisabled}
+          onSubmit={search}
+          onClear={() => setSearchResults([])}
+        />
         {!!searchResults.length && (
           <div className="results">
             <h4>Search results ({searchResults.length})</h4>
-            {searchResults.map(r =>
+            {searchResults.map(r => (
               <ProductTile
                 key={r.id}
                 product={r}
-                onClick={() => updateValue(config?.isMultiSelect ? [...currentValue, r] : [r])}
+                onClick={() => updateValue(config.isMultiSelect ? [...currentValue, r] : [r])}
                 isDisabled={isDisabled}
               />
+            )
             )}
           </div>
         )}
