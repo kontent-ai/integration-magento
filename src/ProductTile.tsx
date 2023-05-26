@@ -23,7 +23,7 @@ export const ProductTile: FC<Props> = props => {
       name={props.product.title}
       tabIndex={tabIndex}
       disabled={props.isDisabled || !props.onClick}
-      className={`tile ${!props.onClick ? 'tile--is-selected' : ''}`}
+      className={`tile ${!props.onClick ? "tile--is-selected" : ""}`}
       title={props.product.title}
       onClick={onClick}
     >
@@ -39,7 +39,7 @@ export const ProductTile: FC<Props> = props => {
           </div>
         )}
       </div>
-      <div className="id">SKU: {props.product.sku || 'N/A'}</div>
+      <div className="id">SKU: {props.product.sku || "N/A"}</div>
       {props.product.previewUrl
         ? (
           <img
@@ -53,4 +53,4 @@ export const ProductTile: FC<Props> = props => {
   );
 };
 
-ProductTile.displayName = 'ProductTile';
+ProductTile.displayName = "ProductTile";
