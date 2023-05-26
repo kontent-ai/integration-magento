@@ -21,7 +21,7 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "dprint": "^0.36.1",
-    "eslint-config-kontent-ai": "^0.1.4",
+    "eslint-config-kontent-ai": "^0.1.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -35,6 +35,12 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "project": [
+        "src/functions/tsconfig.json",
+        "tsconfig.json"
+      ]
+    },
     "extends": [
       "react-app",
       "react-app/jest",
