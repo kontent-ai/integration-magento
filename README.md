@@ -28,12 +28,13 @@
   <a href="#additional-resources">Resources</a>
 </p>
 
-This repository contains the source code of Magento product selector custom element for Kontent.ai. 
+This repository contains the source code of Magento product selector custom element for Kontent.ai.
 
-It also includes a node.js proxy function (see [Netlify functions](https://docs.netlify.com/functions/overview/)) that routes requests from the element to your Magento instance while adding required authentication. 
+It also includes a node.js proxy function (see [Netlify functions](https://docs.netlify.com/functions/overview/)) that routes requests from the element to your Magento instance while adding required authentication.
 
 ## Features
-This  [custom element](https://kontent.ai/learn/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) allows the user to search and link products from their [Magento e-commerce](https://magento.com/) instance into [Kontent.ai](https://kontent.ai).
+
+This [custom element](https://kontent.ai/learn/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features) allows the user to search and link products from their [Magento e-commerce](https://magento.com/) instance into [Kontent.ai](https://kontent.ai).
 
 - Editors can
   - Search for products in Magento commerce
@@ -59,6 +60,7 @@ Or [run it locally](https://docs.netlify.com/functions/build/#test-locally).
 The integration's custom element is created with [Create React App](https://create-react-app.dev/). First you will need to install npm dependencies with `npm install`. Then use `npm run build` to build the integration or `npm run start` to start a local development server. See https://create-react-app.dev/docs/available-scripts for more scripts.
 
 ## Setup
+
 1. ### Create a new Integration inside of your Magento Instance
 
 _If you don't have a Magento account, you can leverage the public Magento demo available at mageplaza.com._
@@ -78,23 +80,23 @@ _If you don't have a Magento account, you can leverage the public Magento demo a
 > **⚠ WARNING: The extension does not require any special permissions but to read your product data. Keep in mind it is always better to keep the necessary permissions to a minimum for security reasons.**
 
 - Choose the **Save & Activate** option from the Save button.
-- Copy the **access token** as you will need it in the next step. 
+- Copy the **access token** as you will need it in the next step.
 
 At this point, the Magento Product API can be queried for products provided that the call includes the access token you just created.
 
 2. ### Netlify/server setup
-    Since you don't want to store the API secret inside the custom element config, we are using [Netlify function](https://docs.netlify.com/functions/overview/) to act as a proxy between your custom element and the Magento Product API. In order to make the function work, you'll need to provide it with the **Secret** you obtained in the previous step. For that, we'll use Netlify's [Build environment variable](https://docs.netlify.com/configure-builds/environment-variables/). The only issue with these variables are that they are being loaded on build, so whenever you **change the variables**, you'll need to **manually trigger a rebuild**. 
+   Since you don't want to store the API secret inside the custom element config, we are using [Netlify function](https://docs.netlify.com/functions/overview/) to act as a proxy between your custom element and the Magento Product API. In order to make the function work, you'll need to provide it with the **Secret** you obtained in the previous step. For that, we'll use Netlify's [Build environment variable](https://docs.netlify.com/configure-builds/environment-variables/). The only issue with these variables are that they are being loaded on build, so whenever you **change the variables**, you'll need to **manually trigger a rebuild**.
 
-    The expected variable name for the function is `MAGENTO_TOKEN`.
+   The expected variable name for the function is `MAGENTO_TOKEN`.
 
-    How this all can be done is described in our [Kontent.ai-Netlify example repository](https://github.com/kontent-ai/netlify-webhook-processor#setup), or can be observed on the animation below (_a different API example was used in the animation_).
+   How this all can be done is described in our [Kontent.ai-Netlify example repository](https://github.com/kontent-ai/netlify-webhook-processor#setup), or can be observed on the animation below (_a different API example was used in the animation_).
 
 ![Netlify variable setup](docs/function_setup.gif?raw=true)
 
-3. ### Configure the Custom Element 
-    After your function is setup, you'll need to create and configure your Magento custom element. The process of adding a custom element into your project is described in [Kontent.ai's official documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/content-editing-extensions). 
+3. ### Configure the Custom Element
+   After your function is setup, you'll need to create and configure your Magento custom element. The process of adding a custom element into your project is described in [Kontent.ai's official documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/content-editing-extensions).
 
-    The custom element has to be also configured. The supported configuration values are as follows:
+   The custom element has to be also configured. The supported configuration values are as follows:
 
 ```
 {
@@ -103,11 +105,13 @@ At this point, the Magento Product API can be queried for products provided that
     "isMultiSelect": false,
 }
 ```
+
 Note that **urlKeyAttribute** and **isMultiSelect** are optional, if not provided, they will be automatically generated with the value shown above.
 
 _The url of the Netlify function should be equal to your custom element's Hosted URL with `/.netlify/functions/magento-client` added to it (if you are using the provided quick deploy). If not, you'll have to update the code of the custom element._
 
 ## What is Saved
+
 The element will contain a json array with objects describing your selected Magento products. See example below:
 
 ```
@@ -123,6 +127,7 @@ The element will contain a json array with objects describing your selected Mage
 ```
 
 ## Contributors
+
 <a href="https://github.com/kontent-ai/integration-magento/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=kontent-ai/integration-magento" />
 </a>
@@ -138,7 +143,6 @@ We have collected notes on how to contribute to this project in [CONTRIBUTING.md
 - [Kontent.ai's Integration documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/integrations-overview)
 - [Custom Element documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/content-editing-extensions)
 - [Custom Element API reference](https://kontent.ai/learn/reference/custom-elements-js-api)
-
 
 [last-commit]: https://img.shields.io/github/last-commit/kontent-ai/integration-magento?style=for-the-badge
 [contributors-shield]: https://img.shields.io/github/contributors/kontent-ai/integration-magento.svg?style=for-the-badge

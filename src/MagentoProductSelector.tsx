@@ -1,10 +1,4 @@
-import {
-  FC,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState
-} from "react"
+import { FC, useCallback, useEffect, useLayoutEffect, useState } from "react";
 
 import { PoweredByLogo } from "./PoweredByLogo";
 import { ProductTile } from "./ProductTile";
@@ -12,7 +6,7 @@ import { SearchInput } from "./SearchInput";
 import { SelectedProducts } from "./SelectedProducts";
 import { Product } from "./types/product";
 
-const defaultUrlKeyAttribute = 'url_key';
+const defaultUrlKeyAttribute = "url_key";
 
 export const MagentoProductSelector: FC = () => {
   const [currentValue, setCurrentValue] = useState<null | ReadonlyArray<Product>>(null);
@@ -39,15 +33,19 @@ export const MagentoProductSelector: FC = () => {
 
   useEffect(() => {
     CustomElement.init((el) => {
-      if (typeof el.config?.storeUrl !== 'string') {
-        throw new Error('Missing Magento Endpoint URL. Please provide the URL of the endpoint for querying products within the custom element JSON config.');
+      if (typeof el.config?.storeUrl !== "string") {
+        throw new Error(
+          "Missing Magento Endpoint URL. Please provide the URL of the endpoint for querying products within the custom element JSON config.",
+        );
       }
       setConfig({
         storeUrl: el.config.storeUrl,
-        urlKeyAttribute: typeof el.config.urlKeyAttribute === 'string' ? el.config.urlKeyAttribute : defaultUrlKeyAttribute,
+        urlKeyAttribute: typeof el.config.urlKeyAttribute === "string"
+          ? el.config.urlKeyAttribute
+          : defaultUrlKeyAttribute,
         isMultiSelect: !!el.config.isMultiSelect,
       });
-      const value = JSON.parse(el.value || '[]');
+      const value = JSON.parse(el.value || "[]");
       setCurrentValue(Array.isArray(value) ? value : [value]); // treat old values (not saved as an array) as a single product
       setIsDisabled(el.disabled);
       updateSize();
@@ -65,8 +63,8 @@ export const MagentoProductSelector: FC = () => {
         updateSize();
       }
     };
-    window.addEventListener('resize', listener);
-    return () => window.removeEventListener('resize', listener);
+    window.addEventListener("resize", listener);
+    return () => window.removeEventListener("resize", listener);
   }, [updateSize, windowWidth]);
 
   if (currentValue === null || config === null) {
@@ -75,15 +73,16 @@ export const MagentoProductSelector: FC = () => {
 
   const search = (searchString: string) =>
     fetch(
-      '/.netlify/functions/magento-client',
+      "/.netlify/functions/magento-client",
       {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({ query: searchString }),
         headers: {
-          'x-root-url': config.storeUrl,
-          'x-url-key': config.urlKeyAttribute,
+          "x-root-url": config.storeUrl,
+          "x-url-key": config.urlKeyAttribute,
         },
-      })
+      },
+    )
       .then(r => r.json())
       .then(setSearchResults);
 
@@ -113,8 +112,7 @@ export const MagentoProductSelector: FC = () => {
                 onClick={() => updateValue(config.isMultiSelect ? [...currentValue, r] : [r])}
                 isDisabled={isDisabled}
               />
-            )
-            )}
+            ))}
           </div>
         )}
       </div>
@@ -123,7 +121,7 @@ export const MagentoProductSelector: FC = () => {
   );
 };
 
-MagentoProductSelector.displayName = 'MagentoProductSelector';
+MagentoProductSelector.displayName = "MagentoProductSelector";
 
 type Config = Readonly<{
   storeUrl: string;

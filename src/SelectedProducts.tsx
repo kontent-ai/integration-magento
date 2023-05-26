@@ -8,7 +8,7 @@ type Props = Readonly<{
   onRemove?: (product: Product) => void;
   onClear: () => void;
   isDisabled: boolean;
-}>
+}>;
 
 export const SelectedProducts: FC<Props> = props => {
   const isEmpty = !props.products.length;
@@ -17,7 +17,7 @@ export const SelectedProducts: FC<Props> = props => {
   return (
     <div className="content">
       <h4 className="title">
-        <span className={`text ${!isEmpty ? 'text--is-selected' : ''}`}>
+        <span className={`text ${!isEmpty ? "text--is-selected" : ""}`}>
           {createTitle(props.products, !!props.onRemove)}
         </span>
         {!isEmpty && (
@@ -44,14 +44,14 @@ export const SelectedProducts: FC<Props> = props => {
   );
 };
 
-SelectedProducts.displayName = 'SelectedProducts';
+SelectedProducts.displayName = "SelectedProducts";
 
 const createTitle = (products: ReadonlyArray<Product>, isMultiSelect: boolean): string => {
   if (products.length === 0) {
-    return `No product${isMultiSelect ? 's' : ''}`;
+    return `No product${isMultiSelect ? "s" : ""}`;
   }
   if (isMultiSelect) {
-    return `Selected products (${products.length})`
+    return `Selected products (${products.length})`;
   }
-  return 'Selected product';
-}
+  return "Selected product";
+};

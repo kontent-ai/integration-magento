@@ -7,8 +7,8 @@ export type Product = Readonly<{
 }>;
 
 export const isProduct = (value: unknown): value is Product =>
-  typeof value === 'object' &&
-  value !== null &&
-  value.hasOwnProperty('id') &&
-  value.hasOwnProperty('title') &&
-  value.hasOwnProperty('urlKey');
+  typeof value === "object"
+  && value !== null
+  && value.hasOwnProperty("id")
+  && value.hasOwnProperty("title")
+  && value.hasOwnProperty("urlKey");
