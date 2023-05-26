@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "dprint": "^0.36.1",
+    "eslint": "^8.41.0",
     "eslint-config-kontent-ai": "^0.1.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,6 +30,7 @@
   },
   "scripts": {
     "format": "dprint fmt",
+    "lintFunctions": "eslint src/functions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

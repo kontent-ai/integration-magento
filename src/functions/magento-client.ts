@@ -1,5 +1,5 @@
-import axios from "axios";
 import { Handler } from "@netlify/functions";
+import axios from "axios";
 
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -35,12 +35,12 @@ export const handler: Handler = async (event) => {
     const response = (await axios.get(`${ROOT_URL}/rest/V1/products`, { headers: headers, params: data })).data;
     const items = response.items.map((item: any) => {
       const media = item.media_gallery_entries;
-      const urlKey = item.custom_attributes?.filter((attr: any) => attr.attribute_code == URL_KEY)[0];
+      const urlKey = item.custom_attributes?.filter((attr: any) => attr.attribute_code === URL_KEY)[0];
       return {
         id: item.id,
         title: item.name,
         previewUrl: media
-          ?.filter((item: any) => item.media_type == "image")
+          ?.filter((item: any) => item.media_type === "image")
           .map((image: any) => `${ROOT_URL}/media/catalog/product${image.file}`)[0],
         sku: item.sku,
         urlKey: urlKey?.value,
